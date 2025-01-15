@@ -11,7 +11,7 @@ export default function App() {
 
   const API_KEY = import.meta.env.VITE_API_KEY;
 
-  const fetchForecast = async () => {
+  const fetchForecast = async (city) => {
     try {
       setError(null);
       const response = await axios.get(
@@ -34,6 +34,7 @@ export default function App() {
               `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
             );
             setCity(response.data.name);
+            fetchForecast(response.data.name);
           } catch (error) {
             console.error("Error fetching geolocation data:", error);
           }
@@ -47,18 +48,12 @@ export default function App() {
     }
   };
 
-  useEffect(() => {
-    if (city) {
-      fetchForecast();
-    }
-  }, [city]);
-
   return (
     <>
       <Header
         city={city}
         setCity={setCity}
-        fetchForecast={fetchForecast}
+        fetchForecast={() => fetchForecast(city)}
         handleGeolocation={handleGeolocation}
       />
       <WeatherApp error={error} forecast={forecast} />

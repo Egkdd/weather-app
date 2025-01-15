@@ -1,18 +1,17 @@
-import DayCard from "../WeatherCard/DayCard";
-import "./WeatherApp.css";
+import DayCard from "../DayCard/DayCard";
+import styles from "./WeatherApp.module.css";
 
-export default function WeatherApp({error, forecast}) {
-  
+export default function WeatherApp({ error, forecast }) {
   return (
-    <div className="app">
-      {error && <p className="error">{error}</p>}
+    <div className={styles.app}>
+      {error && <p className={styles.error}>{error}</p>}
 
       {forecast && (
-        <div className="forecast-container">
+        <div className={styles.forecastContainer}>
           {forecast.list
             .filter((_, index) => index % 8 === 0)
             .map((item, index) => (
-              <DayCard key={index} item={item}/>
+              <DayCard key={index} item={item} />
             ))}
         </div>
       )}

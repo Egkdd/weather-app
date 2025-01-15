@@ -1,0 +1,13 @@
+:root {
+  --main-bg-color: #eef5ff;
+  --main-text-color: #176b87;
+  --btn-color: #176b87;
+  --card-bg-color: #b4d4ff;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
